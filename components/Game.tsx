@@ -38,7 +38,8 @@ export default function Game() {
   }, [gameOver]);
 
   const handleChange = (clickedNum:number) => {
-    if (!gameOver) {
+
+    if (!gameOver && play) {
       if (clickedNum === hitRn) {
         setScore((prevScore) => prevScore + 10);
       } else {
@@ -62,38 +63,39 @@ export default function Game() {
   return (
     <>
       <div className="w-[80%] h-[80%] bg-[#fff] rounded-[10px] overflow-hidden">
-        <div className="bg-[rgb(72,104,72)] h-[100px] w-[100%] text-white flex py-0 px-[20%] md:px-[30%] items-center justify-between">
-          <div className="flex gap-[20px] items-center">
+        <div className="bg-[rgb(72,104,72)] h-[100px] w-[100%] text-white flex  md:py-0 px-[1.5%] md:px-[30%] items-center justify-between ">
+          <div className="flex md:gap-[20px] gap-[10px] items-center px-[5px]">
             <h4>Hit</h4>{" "}
             <div className="bg-[#fff] py-[10px] px-[10px] md:px-[20px] rounded-[5px] text-[rgb(18,119,57)] font-[600] text-[15px] md:text-[25px] sm:mr-[10px]">
               {hitRn}
             </div>
           </div>
-          <div className="flex gap-[20px] items-center">
+          <div className="flex md:gap-[20px] gap-[10px] items-center px-[5px]">
             <h4>Timer</h4>{" "}
             <div className="bg-[#fff] py-[10px] px-[10px] md:px-[20px] rounded-[5px] text-[rgb(18,119,57)] font-[600] text-[15px] md:text-[25px] sm:mr-[10px]">
               {timer}
             </div>
           </div>
-          <div className="flex gap-[20px] items-center mr-20 md:mr-[200px]">
+          <div className="flex md:gap-[20px] gap-[10px] items-center px-[5px] mr-20 md:mr-[200px]">
             <h4>Score</h4>{" "}
-            <div className="bg-[#fff] py-[10px] px-[10px] md:px-[20px] rounded-[5px] text-[rgb(18,119,57)] font-[600] text-[15px] md:text-[25px] -mr-[20px]">
+            <div className="bg-[#fff] py-[10px] px-[10px] md:px-[20px] rounded-[5px] text-[rgb(18,119,57)] font-[600] text-[15px] md:text-[25px] md:-mr-[20px] -mr-[70px]">
               {score}
             </div>
           </div>
           <button
-            onClick={startGame}
-            className="bg-white text-black px-2 py-1 rounded-md font-semibold font-500 hover:text-white hover:bg-zinc-800"
-          >
-            {play ? "Restart Game" : "Start Game"}
-          </button>
+  onClick={startGame}
+  className="md:px-4 md:py-2 bg-white text-black rounded-md font-semibold font-500 hover:text-white hover:bg-zinc-800 "
+>
+  {play ? "Restart Game" : "Start Game"}
+</button>
         </div>
-        <div className="w-[100%] h-[calc(100%-100px)] p-[30px] flex flex-wrap gap-[10px] px-3 md:p-[20px]">
+        <div className="w-[100%] h-[calc(100%-100px)] p-[30px] flex flex-wrap gap-[10px] sm:px-8 md:p-[20px]">
           {bubbles.map((rn, i) => (
             <div
               key={i}
+              
               onClick={() => handleChange(rn)}
-              className={`w-[60px] h-[60px] rounded-full bg-[rgb(72,104,72)] text-[white] flex items-center justify-center font-[500] hover:bg-[rgb(50,75,50)] ${
+              className={`w-[60px] h-[60px] rounded-full bg-[rgb(72,104,72)] text-[white] flex items-center justify-center font-[500] cursor-pointer hover:bg-[rgb(50,75,50)] ${
                 gameOver ? "hidden" : ""
               }`}
             >
